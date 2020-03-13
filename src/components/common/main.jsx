@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { history } from '../_helpers';
+import { history } from '../../_helpers';
 import { alertActions } from '../actions';
 import { PrivateRoute } from '../components';
 import { HomePage } from '../common/home';
