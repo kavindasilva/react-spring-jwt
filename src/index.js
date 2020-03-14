@@ -7,7 +7,9 @@ import App from './components/common/main';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 
+import { configureFakeBackend } from "./_helpers/fake-backend"
 // ReactDOM.render(<App />, document.getElementById('root'));
+configureFakeBackend();
 
 ReactDOM.render(
     <Provider store={ store }>

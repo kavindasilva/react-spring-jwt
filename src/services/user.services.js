@@ -3,7 +3,7 @@ import { authHeader } from '../_helpers';
 
 const config = {
     apiUrl: "http://127.0.0.1",
-    authUrl: "/kfakebackend/be1.php",
+    authUrl: "/kkk/kfakebackend/be1.php",
 };
 
 export const userService = {

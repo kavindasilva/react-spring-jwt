@@ -2,7 +2,12 @@
 import jwt from "jsonwebtoken";
 
 export function configureFakeBackend() {
-    let users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+    let users = [
+        { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' },
+        { id: 2, username: 't2', password: 'test', firstName: 'Test Two', lastName: 'Ln2' },
+        { id: 3, username: 'test3', password: 'test', firstName: 'Three Test', lastName: '3LastName' },
+    ];
+
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         return new Promise((resolve, reject) => {
@@ -10,7 +15,7 @@ export function configureFakeBackend() {
             setTimeout(() => {
 
                 // authenticate
-                if (url.endsWith('/users/authenticate') && opts.method === 'POST') {
+                if (url.endsWith('/kfakebackend/be1.php') && opts.method === 'POST') {
                     // get parameters from post request
                     let params = JSON.parse(opts.body);
 
