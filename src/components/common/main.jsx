@@ -20,20 +20,20 @@ class App extends React.Component {
     }
 
     render() {
-        const { alert } = this.props;
+        const alert = this.props.alert;
         return (
             <div className="jumbotron">
                 <div className="container">
                     <div className="col-sm-8 col-sm-offset-2">
                         {alert.message &&
-                            // <div className={`alert ${alert.type}`}>{alert.message}</div>
-                            <div >sdfd</div>
+                            <div className={`alert ${alert.type}`}>{alert.message.toString()}</div>
+                            // <div >sdfd</div>
                         }
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
-                                <Route path="/k" component={ () => (<div>Sample k</div>) } />
+                                <Route path="/k" component={ () => <div>Sample k</div> } />
                             </div>
                         </Router>
                     </div>
@@ -46,7 +46,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
     const { alert } = state;
     return {
-        alert
+        alert: alert,
     };
 }
 

@@ -2,23 +2,48 @@
 import { authHeader } from '../_helpers';
 
 const config = {
-    apiUrl: "http://127.0.0.1"
+    apiUrl: "http://127.0.0.1",
+    authUrl: "/kfakebackend/be1.php",
 };
 
 export const userService = {
     login,
     logout,
-    getAll
+    getAll,
+    loginTest,
 };
 
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${config.apiUrl}${config.authUrl}`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+
+            return user;
+        });
+}
+
+function loginTest(username, password) {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        // body: JSON.stringify({ username, password })
+    };
+
+    return fetch(`${config.apiUrl}${config.authUrl}`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
