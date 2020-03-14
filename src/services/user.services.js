@@ -1,5 +1,5 @@
 // import config from 'config';
-import { authHeader } from '../_helpers';
+import { authHeader } from '../services/auth-header';
 
 const config = {
     apiUrl: "http://127.0.0.1",
